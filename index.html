@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+   <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <nav class="nav-bar">
+        <div>
+          <a
+            href="https://github.com/Dami-Programmer"
+            target="_blank"
+            class="logo-flex"
+          >
+            <img class="icon" src="newtz logo.png" alt="Logo of brand" />
+            hey.@GITHUB</a
+          >
+        </div>
+
+        <a href="David_Nwinangi_Cv.pdf" download="My_CV.pdf"
+          ><img class="icon" src="download.png" alt="download icon"
+        /></a>
+      </nav>
+      <section>
+        <div class="profile">
+          <h1>Hi, I'm</h1>
+          <img src="20240506_185833.jpg" alt="photo of authot" width="50px" />
+          <h1>David Nwinangi!</h1>
+        </div>
+
+        <div class="what">
+          <h1 class="career-text">
+            <span class="gray-text">I'm a </span>
+            <d id="text"></d>
+          </h1>
+
+          <div class="status">
+            <button class="work">
+              <div class="circle-container">
+                <div class="circle back-circle"></div>
+                <div class="circle front-circle"></div>
+              </div>
+              <span>Open to work</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="connect">
+          <button class="trigger-btn btn" id="triggerPopup">Connect with me</button>
+
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup-content" id="popupContent">
+        <button class="close-btn" id="closePopup">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="popup-title">Get In Touch</h2>
+
+        <div class="contact-info">
+          <a href="tel:+15551234567" class="contact-item phone">
+            <i class="fas fa-phone contact-icon"></i>
+            <span class="contact-text">+1 (555) 123-4567</span>
+          </a>
+
+          <a
+            href="https://instagram.com/yourusername"
+            target="_blank"
+            class="contact-item instagram"
+          >
+            <i class="fab fa-instagram contact-icon"></i>
+            <span class="contact-text">@yourusername</span>
+          </a>
+
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            class="contact-item github"
+          >
+            <i class="fab fa-github contact-icon"></i>
+            <span class="contact-text">github.com/yourusername</span>
+          </a>
+
+          <a
+            href="https://twitter.com/yourusername"
+            target="_blank"
+            class="contact-item twitter"
+          >
+            <i class="fab fa-twitter contact-icon"></i>
+            <span class="contact-text">@yourusername</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+          
+
+          <p class="connect-text">
+            <span>Feel free explore my portfolio and reach out</span>
+            <span>-I'd love to connect</span>
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="container">
+            <header>
+              <h1 class="experience-h1">My Experience</h1>
+            </header>
+
+            <div class="timeline-container">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-icon">3</div>
+                  <div class="timeline-content">
+                    <h2 class="role">VFX Designer at Star sapphire</h2>
+
+                    <div class="details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar"></i> 2018 - 2019
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-location-dot"></i> On Site
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-clock"></i> Full Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-icon">3</div>
+                  <div class="timeline-content">
+                    <h2 class="role">VFX Designer at Digital Plus</h2>
+
+                    <div class="details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar"></i> 2020 - 2021
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-location-dot"></i> Remote
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-clock"></i> Part-Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-icon">3</div>
+                  <div class="timeline-content">
+                    <h2 class="role">Freelancer Video editor & VFX designer</h2>
+
+                    <div class="details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar"></i> 2021- 2023
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-location-dot"></i> Remote
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-clock"></i> Full Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-icon">3</div>
+                  <div class="timeline-content">
+                    <h2 class="role">Freelancer Web Developer</h2>
+
+                    <div class="details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar"></i> 2023 - Present
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-location-dot"></i> Remote
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-clock"></i> Part-Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-icon">3</div>
+                  <div class="timeline-content">
+                    <h2 class="role">Video editor at Rv Power</h2>
+
+                    <div class="details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar"></i> 2024 - Present
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-location-dot"></i> Remote
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-clock"></i> Full Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-item">
+                  <div class="timeline-icon">3</div>
+                  <div class="timeline-content">
+                    <h2 class="role">Video editor at PIXPECTIV</h2>
+
+                    <div class="details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar"></i> 2025 - Present
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-location-dot"></i> Hybrid
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-clock"></i> Full Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <a href="https://www.tiktok.com/@newtz_design?_t=ZS-8zwQEuxBaVU&_r=1" target="_blank">
+              <video class="video-preview" muted loop>
+                <source src="lesson 1.mp4" type="video/mp4" />
+              </video>
+              <div class="overlay">Click to see VFX Projects</div>
+            </a>
+          </div>
+
+          <div class="container">
+            <a href="https://www.instagram.com/newtz__design?igsh=MTd1Z2theWd1OTcydA==" target="_blank">
+            <video class="video-preview" muted loop>
+              <source src="profile video.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay">Click to see Video Edit Projects</div>
+          </div>
+          </a>
+        </div>
+
+        <div class="grid-2">
+          <div class="container-grid first">
+            <div class="image-wrapper">
+              <a id="stepLink" href="#" target="_blank">
+              <img id="stepImage" src="step1.jpg" alt="Step Image" />
+              <div class="overlay-text">Click to preview</div>
+              </a>
+            </div>
+          </div>
+
+          <div class="text">
+            <div>
+              <p class="subtitle">Front-end projects</p>
+            </div>
+
+            <div class="down">
+              <h2 id="stepTitle">01 Discovery Call</h2>
+              <p id="stepDesc">
+                In the first stage, we’ll have a Discovery Call to discuss your
+                goals, needs, and project requirements. This helps us align our
+                vision and set the foundation for a successful collaboration.
+              </p>
+
+              <div class="steps-buttons">
+                <button class="step-btn active" data-step="1">Step 01</button>
+                <button class="step-btn" data-step="2">Step 02</button>
+                <button class="step-btn" data-step="3">Step 03</button>
+                <button class="step-btn" data-step="4">Step 04</button>
+                <button class="step-btn" data-step="5">Step 05</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
