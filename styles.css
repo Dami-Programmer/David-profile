@@ -232,8 +232,8 @@ button {
 }
 
 .instagram .contact-icon {
-  background: rgba(225, 48, 108, 0.2);
-  color: #e1306c;
+  background: rgba(29, 161, 242, 0.2);
+  color: #1da1f2;
 }
 
 .github .contact-icon {
@@ -377,6 +377,7 @@ button {
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  gap: 2rem;
 }
 
 /* my exper */
@@ -392,7 +393,6 @@ button {
 
   overflow-y: auto;
   height: 25rem;
-  width: 35rem;
   align-self: center;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -529,10 +529,6 @@ header {
   height: 28rem;
 }
 
-.first {
-  width: 35rem;
-}
-
 .video-preview {
   width: 100%;
   height: 100%;
@@ -621,7 +617,6 @@ header {
   filter: grayscale(100%);
   width: 100%;
   height: 100%;
-  max-width: 340px; /* controls image max width */
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
