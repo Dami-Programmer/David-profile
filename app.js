@@ -163,18 +163,6 @@ const steps = {
     img: "hikma.png",
     link: "https://my-birthday-wishlist.netlify.app/",
   },
-  // 4: {
-  //   title: "04 Development",
-  //   desc: "Our team builds your product, writing clean and efficient code to bring the designs to life.",
-  //   img: "card.jpg",
-  //   link: "https://example.com/development",
-  // },
-  // 5: {
-  //   title: "05 Launch & Support",
-  //   desc: "Finally, we launch your project and provide ongoing support to ensure everything runs smoothly.",
-  //   img: "cha.jpg",
-  //   link: "https://example.com/launch",
-  // },
 };
 
 const stepBtns = document.querySelectorAll(".step-btn");
