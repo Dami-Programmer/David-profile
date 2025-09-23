@@ -158,23 +158,23 @@ const steps = {
     link: "https://gina-beauty-makeup.netlify.app/",
   },
   3: {
-    title: "03 Design Phase",
-    desc: "We create wireframes, UI/UX mockups and design prototypes that reflect your brand and vision.",
-    img: "20240524_234249.jpg",
-    link: "https://example.com/design",
+    title: "Birthday wishlist",
+    desc: "My Birthday Wishlist is a simple and interactive web app that allows users to view, add, and submit wishlist items in a clean and engaging interface. The project focuses on usability and interactivity — visitors can type in their desired items, submit them, and receive instant feedback with a thank-you message. It demonstrates my ability to build functional, user-friendly web experiences with form handling, dynamic updates, and responsive design.",
+    img: "hikma.png",
+    link: "https://my-birthday-wishlist.netlify.app/",
   },
-  4: {
-    title: "04 Development",
-    desc: "Our team builds your product, writing clean and efficient code to bring the designs to life.",
-    img: "card.jpg",
-    link: "https://example.com/development",
-  },
-  5: {
-    title: "05 Launch & Support",
-    desc: "Finally, we launch your project and provide ongoing support to ensure everything runs smoothly.",
-    img: "cha.jpg",
-    link: "https://example.com/launch",
-  },
+  // 4: {
+  //   title: "04 Development",
+  //   desc: "Our team builds your product, writing clean and efficient code to bring the designs to life.",
+  //   img: "card.jpg",
+  //   link: "https://example.com/development",
+  // },
+  // 5: {
+  //   title: "05 Launch & Support",
+  //   desc: "Finally, we launch your project and provide ongoing support to ensure everything runs smoothly.",
+  //   img: "cha.jpg",
+  //   link: "https://example.com/launch",
+  // },
 };
 
 const stepBtns = document.querySelectorAll(".step-btn");
