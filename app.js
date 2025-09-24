@@ -159,7 +159,7 @@ const steps = {
   },
   3: {
     title: "Birthday wishlist",
-    desc: "My Birthday Wishlist is a simple and interactive web app that allows users to view, add, and submit wishlist items in a clean and engaging interface. The project focuses on usability and interactivity — visitors can type in their desired items, submit them, and receive instant feedback with a thank-you message. It demonstrates my ability to build functional, user-friendly web experiences with form handling, dynamic updates, and responsive design.",
+    desc: "My Birthday Wishlist is a simple and interactive web app that allows users to view, add, and submit wishlist items in a clean and engaging interface. The project focuses on usability and interactivity, visitors can type in their desired items, submit them, and receive instant feedback with a thank-you message. It demonstrates my ability to build functional, user friendly web experiences with form handling, dynamic updates, and responsive design.",
     img: "hikma.png",
     link: "https://my-birthday-wishlist.netlify.app/",
   },
