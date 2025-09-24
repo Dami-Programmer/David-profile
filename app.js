@@ -129,18 +129,44 @@ document.querySelectorAll(".contact-item").forEach((item) => {
 
 /////////////////
 
-// video play
 const videos = document.querySelectorAll(".video-preview");
 
-videos.forEach((video) => {
-  video.addEventListener("mouseenter", () => {
-    video.play();
-  });
+if (window.innerWidth <= 768) {
+  // Mobile behavior (autoplay when scrolled into view)
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.play(); // play video when visible
+        } else {
+          entry.target.pause(); // pause when out of view
+        }
+      });
+    },
+    {
+      root: null, // viewport
+      threshold: 0.5, // play when at least 50% is visible
+      rootMargin: "-50px 0px -50px 0px", // trigger 50px before entering/leaving
+    }
+  );
 
-  video.addEventListener("mouseleave", () => {
-    video.pause();
+  videos.forEach((video) => {
+    observer.observe(video);
   });
-});
+} else {
+  // Desktop behavior (hover to play)
+  videos.forEach((video) => {
+    video.addEventListener("mouseenter", () => {
+      video.play();
+    });
+
+    video.addEventListener("mouseleave", () => {
+      video.pause();
+    });
+  });
+}
+
+////////////////
 
 // coding project
 
