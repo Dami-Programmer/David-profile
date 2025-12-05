@@ -189,6 +189,12 @@ const steps = {
     img: "hikma.png",
     link: "https://my-birthday-wishlist.netlify.app/",
   },
+  4: {
+    title: "Green Energy",
+    desc: "The online storefront offers a comprehensive range of solar power solutions. It is designed to allow customers to browse and purchase a wide variety of equipment needed for setting up solar power systems. This equipment includes core components such as panels and inverters , as well as related products like solar-powered lighting and security cameras.",
+    img: "GE.png",
+    link: "https://green-eg.netlify.app/",
+  },
 };
 
 const stepBtns = document.querySelectorAll(".step-btn");
