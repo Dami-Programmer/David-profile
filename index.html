@@ -3,329 +3,425 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+    <title>David Nwinangi | Front-end Developer (React, TypeScript, Node)</title>
+    <meta
+      name="description"
+      content="David Nwinangi is a front-end developer who builds web apps with React and TypeScript, from the interface to the Node server behind it. See MirrorLabs, Turnly, Newtz Chef, CheckMate and more."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f100e" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="David Nwinangi | Front-end Developer" />
+    <meta
+      property="og:description"
+      content="React, TypeScript and Node projects by David Nwinangi, with live demos and source code. Open to work."
+    />
+    <meta property="og:url" content="https://davey-portfolio.netlify.app/" />
+    <meta property="og:image" content="https://davey-portfolio.netlify.app/img/turnly.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="canonical" href="https://davey-portfolio.netlify.app/" />
+    <link rel="icon" type="image/jpeg" href="logo-icon.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-      rel="stylesheet"
-    />
-
-     <link rel="icon" type="image/png" href="logo-icon.jpg">
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-   <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
     <link rel="stylesheet" href="styles.css" />
-
-    <title>Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   </head>
+
   <body>
-    <main>
-      <nav class="nav-bar">
-        <div>
-          <a
-            href="https://github.com/Dami-Programmer"
-            target="_blank"
-            class="logo-flex"
-          >
-            <img class="icon" src="newtz logo.png" alt="Logo of brand" />
-            hey.@GITHUB</a
-          >
-        </div>
+    <a class="skip" href="#content">Skip to content</a>
 
-        <a href="DavidNwinangi.pdf" download="DavidNwinangi.pdf"
-          ><img class="icon" src="download.png" alt="download icon"
-        /></a>
+    <header class="top">
+      <nav class="nav" aria-label="Main">
+        <a class="brand" href="#top" aria-label="David Nwinangi, back to top">
+          <img class="brand-logo" src="img/newtz-logo.png" alt="David Nwinangi" width="547" height="293" />
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+
+        <a class="btn btn-outline" href="David-Nwinangi-Frontend-Developer-CV.pdf" download="David-Nwinangi-Frontend-Developer-CV.pdf">
+          <svg class="dl" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="dl-tray" d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><g class="dl-arrow"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/></g></svg>
+          <span>Download CV</span>
+        </a>
       </nav>
-      <section>
-        <div class="profile">
-          <h1>Hi, I'm David Nwinangi!</h1>
+    </header>
+
+    <main id="content">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <p class="status">
+          <span class="dot" aria-hidden="true"></span>
+          Open to work
+        </p>
+
+        <h1>Hi, I'm David Nwinangi.</h1>
+
+        <p class="role">
+          <span class="muted">I'm a</span>
+          <span class="type"><span id="text">Front-end Developer</span><span class="caret" aria-hidden="true"></span></span>
+        </p>
+
+        <p class="lede">
+          I build web apps with React and TypeScript, from the interface to the Node server behind it.
+        </p>
+
+        <div class="cta">
+          <a class="btn btn-solid" href="#projects">
+            View projects
+            <i class="fas fa-arrow-down" aria-hidden="true"></i>
+          </a>
+          <button class="btn btn-outline" id="triggerPopup" type="button" aria-haspopup="dialog">
+            Connect with me
+          </button>
         </div>
 
-        <div class="what">
-          <h1 class="career-text">
-            <span class="gray-text">I'm a </span>
-            <d id="text"></d>
-          </h1>
+        <ul class="tools" aria-label="Main tools">
+          <li>React</li>
+          <li>TypeScript</li>
+          <li>Node.js</li>
+          <li>Socket.IO</li>
+          <li>Vite</li>
+        </ul>
 
-          <div class="status">
-            <button class="work">
-              <div class="circle-container">
-                <div class="circle back-circle"></div>
-                <div class="circle front-circle"></div>
-              </div>
-              <span>Open to work</span>
-            </button>
+        <ul class="social" aria-label="Social links">
+          <li>
+            <a href="https://github.com/Dami-Programmer" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/david-nwinangi-622b33113/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin" aria-hidden="true"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com/Newtz_D" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <span>X</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- FEATURED PROJECTS -->
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-head">
+          <p class="eyebrow">Featured work</p>
+          <h2 id="projects-title">Projects</h2>
+          <p class="section-note">Things I designed, built and shipped. Each one has a live demo or the source code.</p>
+        </div>
+
+        <!-- MirrorLabs -->
+        <article class="feature">
+          <a class="feature-shot" href="https://www.mirrorlabs.ng/" target="_blank" rel="noopener noreferrer" aria-label="Open the MirrorLabs live site">
+            <img src="img/mirrorlabs.webp" alt="MirrorLabs website showing the headline Design it, and it's already built, with a design canvas and generated code" width="1200" height="994" loading="lazy" />
+          </a>
+          <div class="feature-body">
+            <p class="kind">Product · Design to code</p>
+            <h3>MirrorLabs</h3>
+            <p class="what">
+              A design canvas that writes real React, Vue, Svelte, Angular or HTML code into your project as you design. When the code changes, the canvas updates too.
+            </p>
+            <ul class="built">
+              <li>One of the front-end developers and a main contributor to the product.</li>
+              <li>Built core parts of the canvas interface and the design-to-code experience.</li>
+            </ul>
+            <ul class="tags" aria-label="Built with">
+              <li>React</li><li>TypeScript</li><li>Vite</li>
+            </ul>
+            <p class="note-line"><span class="pill-status">Key contributor</span> Front-end developer on the team since October 2026.</p>
+            <div class="links">
+              <a class="visit" href="https://www.mirrorlabs.ng/" target="_blank" rel="noopener noreferrer">Live site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Turnly -->
+        <article class="feature flip">
+          <a class="feature-shot" href="https://listen-2-pyrg.onrender.com" target="_blank" rel="noopener noreferrer" aria-label="Open the Turnly live site">
+            <img class="img-light" src="img/turnly.webp" alt="Turnly website showing the headline Every voice gets a turn and a moderated meeting" width="1200" height="825" loading="lazy" />
+            <img class="img-dark" src="img/turnly-dark.webp" alt="Turnly website showing the headline Every voice gets a turn and a moderated meeting" width="1200" height="825" loading="lazy" />
+          </a>
+          <div class="feature-body">
+            <p class="kind">Full-stack web app · Built by me</p>
+            <h3>Turnly</h3>
+            <p class="what">
+              Video calls where people raise a hand and the host gives them the floor, so big meetings never turn into talking over each other.
+            </p>
+            <ul class="built">
+              <li>Designed and built end to end, from UX to deployment, in under two months.</li>
+              <li>Server-enforced moderation: host and co-host roles, a raised-hand queue and a lobby, plus cloud recording, live captions, polls and breakout rooms.</li>
+              <li>A React 18 front end with desktop and phone layouts, light and dark themes, and calls running on Cloudflare's SFU.</li>
+              <li>80+ automated tests and a GitHub Actions pipeline on every push.</li>
+            </ul>
+            <ul class="tags" aria-label="Built with">
+              <li>React</li><li>Vite</li><li>Node.js</li><li>Express</li><li>Socket.IO</li><li>WebRTC</li><li>Cloudflare</li>
+            </ul>
+            <div class="links">
+              <a class="visit" href="https://listen-2-pyrg.onrender.com" target="_blank" rel="noopener noreferrer">Live site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <a class="visit ghost" href="https://github.com/Dami-Programmer/Listen" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Source code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Newtz Chef -->
+        <article class="feature">
+          <a class="feature-shot" href="https://newtz-chef.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Open the Newtz Chef live site">
+            <img class="img-light" src="img/newtz-chef.webp" alt="Newtz Chef home screen asking what are we cooking today" width="1200" height="675" loading="lazy" />
+            <img class="img-dark" src="img/newtz-chef-dark.webp" alt="Newtz Chef home screen asking what are we cooking today" width="1200" height="675" loading="lazy" />
+          </a>
+          <div class="feature-body">
+            <p class="kind">AI web app · Built by me</p>
+            <h3>Newtz Chef</h3>
+            <p class="what">
+              An AI cooking assistant. Tell it what's in your kitchen, or name a dish, and it writes a step-by-step recipe in the style of the region you pick.
+            </p>
+            <ul class="built">
+              <li>Cook from what you have: it matches your ingredients to a meal, with a match percentage and what's missing.</li>
+              <li>Regional recipes for Nigeria, West Africa, East Africa and Europe/UK, with saved recipes and light and dark mode.</li>
+              <li>The AI key stays private. Requests run through a Netlify Function and never reach the browser.</li>
+            </ul>
+            <ul class="tags" aria-label="Built with">
+              <li>React 19</li><li>Vite</li><li>Netlify Functions</li><li>Groq API</li>
+            </ul>
+            <div class="links">
+              <a class="visit" href="https://newtz-chef.netlify.app" target="_blank" rel="noopener noreferrer">Live site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <a class="visit ghost" href="https://github.com/Dami-Programmer/Food-recipe" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Source code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CheckMate -->
+        <article class="feature flip">
+          <div class="feature-shot art" aria-hidden="true">
+            <img class="art-icon" src="img/checkmate-icon.png" alt="" width="128" height="128" loading="lazy" />
+            <p class="art-name">CheckMate</p>
+            <p class="art-line">Know what you're agreeing to.</p>
+            <img class="art-reader" src="img/checkmate-reader.png" alt="" width="288" height="169" loading="lazy" />
+          </div>
+          <div class="feature-body">
+            <p class="kind">Chrome extension · Built by me</p>
+            <h3>CheckMate</h3>
+            <p class="what">
+              Reads a website's terms and privacy policy and flags the risky clauses, in plain language.
+            </p>
+            <ul class="built">
+              <li>Scores the page and sorts every risky clause by how much it matters.</li>
+              <li>Highlights the exact words on the page and explains a clause in simple words.</li>
+              <li>Checks uploaded documents (PDF, Word or text) on the user's own device.</li>
+            </ul>
+            <ul class="tags" aria-label="Built with">
+              <li>TypeScript</li><li>Chrome extension</li>
+            </ul>
+            <p class="note-line"><span class="pill-status">Invite only</span> Coming soon to the Chrome Web Store.</p>
+            <div class="links">
+              <a class="visit ghost" href="https://github.com/Dami-Programmer/CheckMate" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Source code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- MORE WORK -->
+        <div class="more-head">
+          <h3>More work</h3>
+          <a class="more-link" href="https://github.com/Dami-Programmer?tab=repositories" target="_blank" rel="noopener noreferrer">All repositories on GitHub <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+
+        <ul class="more">
+          <li class="more-item">
+            <img src="img/rv.webp" alt="" width="1200" height="917" loading="lazy" />
+            <div>
+              <p class="kind">Client project · Company website</p>
+              <h4>Rv Power</h4>
+              <p>Lead web developer since 2024. Built the company website, a store for solar power equipment, and keep the live site running and up to date.</p>
+              <ul class="tags small"><li>React</li><li>CSS</li></ul>
+            </div>
+            <a class="visit" href="https://rvhomesandpower.com/" target="_blank" rel="noopener noreferrer">Live site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </li>
+
+          <li class="more-item">
+            <img src="img/wishlist.webp" alt="" width="1086" height="929" loading="lazy" />
+            <div>
+              <p class="kind">Interactive web app</p>
+              <h4>Birthday wishlist</h4>
+              <p>Visitors can view, add and submit wishlist items and get an instant thank-you message.</p>
+              <ul class="tags small"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </div>
+            <a class="visit" href="https://my-birthday-wishlist.netlify.app/" target="_blank" rel="noopener noreferrer">Live site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </li>
+
+          <li class="more-item">
+            <img class="img-light" src="img/green-energy.webp" alt="" width="640" height="450" loading="lazy" />
+            <img class="img-dark" src="img/green-energy-dark.webp" alt="" width="640" height="450" loading="lazy" />
+            <div>
+              <p class="kind">Online storefront</p>
+              <h4>Green Energy</h4>
+              <p>A solar power storefront with scroll animations.</p>
+              <ul class="tags small"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            </div>
+            <a class="visit" href="https://green-eg.netlify.app/" target="_blank" rel="noopener noreferrer">Live site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- STACK -->
+      <section class="section" id="stack" aria-labelledby="stack-title">
+        <div class="section-head">
+          <p class="eyebrow">What I use</p>
+          <h2 id="stack-title">Stack</h2>
+          <p class="section-note">Tools from my CV and the projects above.</p>
+        </div>
+
+        <div class="stack">
+          <div class="stack-group">
+            <h3>Front end</h3>
+            <ul class="tags">
+              <li>React</li><li>TypeScript</li><li>JavaScript (ES6+)</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li><li>Bootstrap</li><li>Vite</li><li>Accessibility (ARIA)</li><li>Responsive design</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3>Browser APIs and real time</h3>
+            <ul class="tags">
+              <li>WebRTC</li><li>Socket.IO</li><li>Web Audio API</li><li>Web Speech API</li><li>MediaRecorder</li><li>Canvas API</li><li>PDF.js</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3>Back end, cloud and tools</h3>
+            <ul class="tags">
+              <li>Node.js</li><li>Express</li><li>REST APIs</li><li>Cloudflare (SFU, R2)</li><li>Netlify Functions</li><li>Netlify</li><li>Vercel</li><li>Render</li><li>Git and GitHub</li><li>GitHub Actions</li><li>ESLint</li><li>Prettier</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3>Design and practice</h3>
+            <ul class="tags">
+              <li>Figma</li><li>UI/UX design</li><li>Design systems</li><li>Automated testing</li><li>Content Security Policy</li><li>Rate limiting</li><li>Performance</li><li>SEO</li>
+            </ul>
           </div>
         </div>
+      </section>
 
-        <div class="connect">
-          <button class="trigger-btn btn" id="triggerPopup">Connect with me</button>
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <div class="section-head">
+          <p class="eyebrow">Where I've worked</p>
+          <h2 id="experience-title">Experience</h2>
+        </div>
 
-    <!-- Popup Modal -->
-    <div class="popup-overlay" id="popupOverlay">
+        <ol class="jobs">
+          <li class="job">
+            <p class="when"><span class="now-dot" aria-hidden="true"></span>Oct 2026 – Present</p>
+            <div>
+              <h3>Front-end Developer</h3>
+              <p class="org"><a href="https://www.mirrorlabs.ng/" target="_blank" rel="noopener noreferrer">MirrorLabs</a></p>
+              <p class="job-text">One of the front-end developers and a main contributor to MirrorLabs, a design canvas that writes real React, Vue, Svelte, Angular or HTML code as you design. Built core parts of the canvas interface and the design-to-code experience.</p>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when"><span class="now-dot" aria-hidden="true"></span>Feb 2024 – Present</p>
+            <div>
+              <h3>Web Developer and Designer</h3>
+              <p class="org"><a href="https://rvhomesandpower.com/" target="_blank" rel="noopener noreferrer">Rv Power</a> · Remote</p>
+              <p class="job-text">Built the company website with React and CSS as the lead web developer, and have managed the live site ever since, keeping it running and up to date.</p>
+            </div>
+          </li>
+          <li class="job">
+            <p class="when">In progress</p>
+            <div>
+              <h3>Mass Communication</h3>
+              <p class="org">Rivers State University · Rivers State, Nigeria</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Let's build something.</h2>
+        <p class="section-note">
+          Hiring, or have a project in mind? Reach out and I'll get back to you.
+        </p>
+        <div class="cta">
+          <button class="btn btn-solid" id="triggerPopup2" type="button" aria-haspopup="dialog">
+            Connect with me
+          </button>
+          <a class="btn btn-outline" href="David-Nwinangi-Frontend-Developer-CV.pdf" download="David-Nwinangi-Frontend-Developer-CV.pdf">
+            <svg class="dl" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="dl-tray" d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><g class="dl-arrow"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/></g></svg>
+            <span>Download CV</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>© 2026 David Nwinangi</p>
+      <ul class="foot-links">
+        <li><a href="https://github.com/Dami-Programmer" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/david-nwinangi-622b33113/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://x.com/Newtz_D" target="_blank" rel="noopener noreferrer">X</a></li>
+        <li><a href="David-Nwinangi-Frontend-Developer-CV.pdf" download="David-Nwinangi-Frontend-Developer-CV.pdf">CV</a></li>
+      </ul>
+    </footer>
+
+    <!-- Contact popup -->
+    <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
       <div class="popup-content" id="popupContent">
-        <button class="close-btn" id="closePopup">
-          <i class="fas fa-times"></i>
+        <button class="close-btn" id="closePopup" type="button" aria-label="Close">
+          <i class="fas fa-times" aria-hidden="true"></i>
         </button>
-        <h2 class="popup-title">Get In Touch</h2>
+        <h2 class="popup-title" id="popupTitle">Get in touch</h2>
 
         <div class="contact-info">
           <a href="tel:+2349035296649" class="contact-item phone">
-            <i class="fas fa-phone contact-icon"></i>
-            <span class="contact-text">+234903 529 6649</span>
+            <i class="fas fa-phone contact-icon" aria-hidden="true"></i>
+            <span class="contact-text">+234 903 529 6649</span>
           </a>
-
-          <a
-            href="https://www.linkedin.com/in/david-nwinangi-622b33113/"
-            target="_blank"
-            class="contact-item instagram"
-          >
-            <i class="fab fa-linkedin contact-icon"></i>
+          <a href="https://www.linkedin.com/in/david-nwinangi-622b33113/" target="_blank" rel="noopener noreferrer" class="contact-item linkedin">
+            <i class="fab fa-linkedin contact-icon" aria-hidden="true"></i>
             <span class="contact-text">David Nwinangi</span>
           </a>
-
-          <a
-            href="https://github.com/Dami-Programmer"
-            target="_blank"
-            class="contact-item github"
-          >
-            <i class="fab fa-github contact-icon"></i>
+          <a href="https://github.com/Dami-Programmer" target="_blank" rel="noopener noreferrer" class="contact-item github">
+            <i class="fab fa-github contact-icon" aria-hidden="true"></i>
             <span class="contact-text">Dami-Programmer</span>
           </a>
-
-          <a
-            href="https://x.com/Newtz_D?t=tPmJw_8_WOEwS7FID75-BQ&s=09"
-            target="_blank"
-            class="contact-item twitter"
-          >
-            <i class="fab fa-twitter contact-icon"></i>
-            <span class="contact-text">@Newtz</span>
+          <a href="https://x.com/Newtz_D" target="_blank" rel="noopener noreferrer" class="contact-item twitter">
+            <i class="fab fa-twitter contact-icon" aria-hidden="true"></i>
+            <span class="contact-text">@Newtz_D</span>
           </a>
         </div>
       </div>
     </div>
 
-
-
-          
-
-          <p class="connect-text">
-            <span>Feel free explore my portfolio and reach out</span>
-            <span>-I'd love to connect</span>
-          </p>
-        </div>
-
-        <div class="grid">
-          <div class="container">
-            <header>
-              <h1 class="experience-h1">My Experience</h1>
-            </header>
-
-            <div class="timeline-container">
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">VFX Designer at Star sapphire</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2018 - 2019
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> On Site
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Full Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">VFX Designer at Digital Plus</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2020 - 2021
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> Remote
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Part-Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">Freelancer Video editor & VFX designer</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2021- 2023
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> Remote
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Full Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">Freelancer Web Developer</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2023 - Present
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> Remote
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Part-Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">Video editor at Rv Power</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2024 - Present
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> Remote
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Full Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">Video editor at PIXPECTIV</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2025 - Present
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> Hybrid
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Full Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <div class="timeline-icon">3</div>
-                  <div class="timeline-content">
-                    <h2 class="role">News Producer at Silver Bird 93.7fm</h2>
-
-                    <div class="details">
-                      <div class="detail-item">
-                        <i class="fas fa-calendar"></i> 2025 - Present
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-location-dot"></i> Hybrid
-                      </div>
-                      <div class="detail-item">
-                        <i class="fas fa-clock"></i> Full Time
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="container">
-            <a href="https://www.tiktok.com/@newtz_design?_t=ZS-8zwQEuxBaVU&_r=1" target="_blank">
-              <video class="video-preview" muted loop>
-                <source src="https://res.cloudinary.com/dqbuoazsn/video/upload/rv_logo_intro_ut5jrt.mp4" type="video/mp4" />
-              </video>
-              <div class="overlay">Click to see VFX Projects</div>
-            </a>
-          </div>
-
-          <div class="container">
-            <a href="https://www.instagram.com/newtz__design?igsh=MTd1Z2theWd1OTcydA==" target="_blank">
-            <video class="video-preview" muted loop>
-              <source src="https://res.cloudinary.com/dqbuoazsn/video/upload/profile_video_fissl0.mp4" type="video/mp4" />
-            </video>
-            <div class="overlay">Click to see Video Edit Projects</div>
-          </div>
-          </a>
-        </div>
-
-        <div class="grid-2">
-          <div class="container-grid first">
-            <div class="image-wrapper">
-              <a id="stepLink" href="#" target="_blank">
-              <img id="stepImage" src="step1.jpg" alt="Step Image" />
-              <div class="overlay-text">Click to preview</div>
-              </a>
-            </div>
-          </div>
-
-          <div class="text">
-            <div>
-              <p class="subtitle">Front-end projects</p>
-            </div>
-
-            <div class="down">
-              <h2 id="stepTitle">01 Discovery Call</h2>
-              <p id="stepDesc">
-                In the first stage, we’ll have a Discovery Call to discuss your
-                goals, needs, and project requirements. This helps us align our
-                vision and set the foundation for a successful collaboration.
-              </p>
-
-              <div class="steps-buttons">
-                <button class="step-btn active" data-step="1">Solar vendor</button>
-                <button class="step-btn" data-step="2">Beauty & Makeup</button>
-                <button class="step-btn" data-step="3">Wishlist</button>
-                <button class="step-btn" data-step="4">Green Energy</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
     <script src="app.js"></script>
   </body>
 </html>

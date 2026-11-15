@@ -1,7 +1,14 @@
-const texts = ["Front-end Dev.", "Video editor", "VFX Designer"];
-const typingSpeed = 50; // speed for typing (ms per character)
-const eraseSpeed = 50; // speed for erasing
-const delayBetween = 3000; // wait time before erasing (3s)
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------------------------------------------------------------
+// Typing effect for the role line.
+// The first role is already in the HTML, so the page reads fine
+// without JavaScript or when the visitor prefers reduced motion.
+// ---------------------------------------------------------------
+const texts = ["Front-end Developer", "Web Developer"];
+const typingSpeed = 55;
+const eraseSpeed = 35;
+const delayBetween = 2600;
 
 let textIndex = 0;
 let charIndex = 0;
@@ -13,7 +20,6 @@ function type() {
     charIndex++;
     setTimeout(type, typingSpeed);
   } else {
-    // wait before erasing
     setTimeout(erase, delayBetween);
   }
 }
@@ -24,215 +30,178 @@ function erase() {
     charIndex--;
     setTimeout(erase, eraseSpeed);
   } else {
-    // move to next text
     textIndex = (textIndex + 1) % texts.length;
     setTimeout(type, typingSpeed);
   }
 }
 
-// start typing effect
-type();
+if (!reduceMotion && textElement) {
+  // start from the full first role, then erase it and begin the loop
+  charIndex = texts[0].length;
+  setTimeout(erase, delayBetween);
+}
 
-// /////////////////////////////////
-// popup script
-
-// DOM Elements
-const triggerBtn = document.getElementById("triggerPopup");
+// ---------------------------------------------------------------
+// Contact popup (two buttons open the same popup)
+// ---------------------------------------------------------------
+const triggers = [
+  document.getElementById("triggerPopup"),
+  document.getElementById("triggerPopup2"),
+].filter(Boolean);
 const popupOverlay = document.getElementById("popupOverlay");
 const popupContent = document.getElementById("popupContent");
 const closeBtn = document.getElementById("closePopup");
+let lastTrigger = null;
 
-// Open Popup
-triggerBtn.addEventListener("click", () => {
+function animate(opts) {
+  // anime.js loads with "defer"; fall back to plain CSS if it is not ready
+  if (!reduceMotion && window.anime) return anime(opts);
+  return null;
+}
+
+function openPopup(trigger) {
+  lastTrigger = trigger;
   popupOverlay.classList.add("active");
   popupContent.classList.add("active");
+  popupOverlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
 
-  // Anime.js animation for popup entrance
-  anime({
+  animate({
     targets: popupContent,
     scale: [0.8, 1],
     opacity: [0, 1],
     duration: 600,
     easing: "easeOutElastic(1, .8)",
   });
-
-  // Background fade in
-  anime({
+  animate({
     targets: popupOverlay,
     opacity: [0, 1],
     duration: 400,
     easing: "easeOutQuad",
   });
-
-  // Stagger animation for contact items
-  anime({
+  animate({
     targets: ".contact-item",
     translateY: [30, 0],
     opacity: [0, 1],
-    delay: anime.stagger(150),
+    delay: window.anime ? anime.stagger(120) : 0,
     duration: 600,
     easing: "easeOutQuad",
   });
-});
 
-// Close Popup
-closeBtn.addEventListener("click", () => {
-  // Anime.js animation for popup exit
-  anime({
+  closeBtn.focus();
+}
+
+function finishClose() {
+  popupOverlay.classList.remove("active");
+  popupContent.classList.remove("active");
+  popupOverlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("no-scroll");
+  if (lastTrigger) lastTrigger.focus();
+}
+
+function closePopup() {
+  if (!popupOverlay.classList.contains("active")) return;
+  const exit = animate({
     targets: popupContent,
     scale: [1, 0.8],
     opacity: [1, 0],
-    duration: 400,
+    duration: 350,
     easing: "easeInQuad",
   });
-
-  // Background fade out
-  anime({
+  const fade = animate({
     targets: popupOverlay,
     opacity: [1, 0],
     duration: 300,
     easing: "easeInQuad",
-    complete: function () {
-      popupOverlay.classList.remove("active");
-      popupContent.classList.remove("active");
-    },
+    complete: finishClose,
   });
+  if (!exit && !fade) finishClose();
+}
+
+triggers.forEach((t) => t.addEventListener("click", () => openPopup(t)));
+closeBtn.addEventListener("click", closePopup);
+
+popupOverlay.addEventListener("click", (e) => {
+  if (e.target === popupOverlay) closePopup();
 });
 
-// Close when clicking outside the content
-popupOverlay.addEventListener("click", (e) => {
-  if (e.target === popupOverlay) {
-    closeBtn.click();
+// Escape closes; Tab stays inside the popup while it is open
+document.addEventListener("keydown", (e) => {
+  if (!popupOverlay.classList.contains("active")) return;
+  if (e.key === "Escape") {
+    closePopup();
+    return;
+  }
+  if (e.key === "Tab") {
+    const focusable = popupOverlay.querySelectorAll("a[href], button");
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   }
 });
 
-// Add hover animation to contact items
-document.querySelectorAll(".contact-item").forEach((item) => {
-  item.addEventListener("mouseenter", function () {
-    anime({
-      targets: this,
-      scale: 1.05,
-      duration: 300,
-      easing: "easeOutQuad",
-    });
-  });
 
-  item.addEventListener("mouseleave", function () {
-    anime({
-      targets: this,
-      scale: 1,
-      duration: 300,
-      easing: "easeOutQuad",
-    });
-  });
-});
-
-/////////////////
-
-const videos = document.querySelectorAll(".video-preview");
-
-if (window.innerWidth <= 768) {
-  // Mobile behavior (autoplay when scrolled into view)
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.play(); // play video when visible
-        } else {
-          entry.target.pause(); // pause when out of view
-        }
-      });
-    },
-    {
-      root: null, // viewport
-      threshold: 0.5, // play when at least 50% is visible
-      rootMargin: "-50px 0px -50px 0px", // trigger 50px before entering/leaving
-    }
-  );
-
-  videos.forEach((video) => {
-    observer.observe(video);
-  });
-} else {
-  // Desktop behavior (hover to play)
-  videos.forEach((video) => {
-    video.addEventListener("mouseenter", () => {
-      video.play();
-    });
-
-    video.addEventListener("mouseleave", () => {
-      video.pause();
-    });
-  });
-}
-
-////////////////
-
-// coding project
-
-const steps = {
-  1: {
-    title: "Solar vendor",
-    desc: "Rv Power is the online storefront for a company dedicated to providing a comprehensive range of solar power solutions. The website is designed to allow customers to browse and purchase a wide variety of equipment needed for setting up solar power systems, from the core components like panels and inverters to related products like solar-powered lighting and security cameras. ",
-    img: "Rv.png",
-    link: "https://rvhomesandpower.com/",
-  },
-  2: {
-    title: "Gina Beauty & Makeup",
-    desc: "A modern online storefront for a beauty brand.  It allows customers to browse a wide selection of beauty and makeup products through a clean. The design emphasizes elegance, usability, and strong visuals, creating an engaging shopping experience. Key focuses include smooth animations, intuitive navigation, and scalability, making it a professional and user-friendly platform that highlights the brand’s products effectively.",
-    img: "gina.png",
-    link: "https://gina-beauty-makeup.netlify.app/",
-  },
-  3: {
-    title: "Birthday wishlist",
-    desc: "My Birthday Wishlist is a simple and interactive web app that allows users to view, add, and submit wishlist items in a clean and engaging interface. The project focuses on usability and interactivity, visitors can type in their desired items, submit them, and receive instant feedback with a thank-you message. It demonstrates my ability to build functional, user friendly web experiences with form handling, dynamic updates, and responsive design.",
-    img: "hikma.png",
-    link: "https://my-birthday-wishlist.netlify.app/",
-  },
-  4: {
-    title: "Green Energy",
-    desc: "The online storefront offers a comprehensive range of solar power solutions. It is designed to allow customers to browse and purchase a wide variety of equipment needed for setting up solar power systems. This equipment includes core components such as panels and inverters , as well as related products like solar-powered lighting and security cameras.",
-    img: "GE.png",
-    link: "https://green-eg.netlify.app/",
-  },
-};
-
-const stepBtns = document.querySelectorAll(".step-btn");
-const stepTitle = document.getElementById("stepTitle");
-const stepDesc = document.getElementById("stepDesc");
-const stepImage = document.getElementById("stepImage");
-const stepLink = document.getElementById("stepLink");
-
-const transitionTime = 500; // match CSS transition
-
-stepBtns.forEach((btn) => {
+// ---------------------------------------------------------------
+// Download buttons: show "Downloading..." for a moment after a click
+// ---------------------------------------------------------------
+document.querySelectorAll("a.btn[download]").forEach((btn) => {
+  const label = btn.querySelector("span");
+  if (!label) return;
+  const original = label.textContent;
   btn.addEventListener("click", () => {
-    stepBtns.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const step = steps[btn.dataset.step];
-
-    stepTitle.classList.add("fade");
-    stepDesc.classList.add("fade");
-    stepImage.classList.add("fade");
-
+    btn.classList.add("is-downloading");
+    label.textContent = "Downloading...";
     setTimeout(() => {
-      stepTitle.textContent = step.title;
-      stepDesc.textContent = step.desc;
-      stepImage.src = step.img;
-      stepLink.href = step.link; // 🔗 update link
-
-      stepTitle.classList.remove("fade");
-      stepDesc.classList.remove("fade");
-      stepImage.classList.remove("fade");
-    }, transitionTime);
+      btn.classList.remove("is-downloading");
+      label.textContent = original;
+    }, 1800);
   });
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const step = steps[1]; // step 1 by default
-  stepTitle.textContent = step.title;
-  stepDesc.textContent = step.desc;
-  stepImage.src = step.img;
-  stepLink.href = step.link; // 🔗 update link
-});
+
+// ---------------------------------------------------------------
+// Light / dark theme
+// Follows the visitor's device until they press the toggle; then
+// their choice is remembered on this browser.
+// ---------------------------------------------------------------
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const BG = { light: "#f6f5f1", dark: "#0f100e" };
+
+  const current = () => root.getAttribute("data-theme") || (media.matches ? "dark" : "light");
+
+  function paint() {
+    const theme = current();
+    btn.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute("content", BG[theme]));
+  }
+
+  btn.addEventListener("click", () => {
+    const next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
+    paint();
+  });
+
+  if (media.addEventListener) {
+    media.addEventListener("change", () => {
+      let saved = null;
+      try {
+        saved = localStorage.getItem("theme");
+      } catch (e) {}
+      if (!saved) paint();
+    });
+  }
+  paint();
+})();
