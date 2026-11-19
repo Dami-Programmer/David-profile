@@ -1522,6 +1522,106 @@ html {
   }
 }
 
+/* ---------- header icon buttons: Download CV sits beside the theme button ---------- */
+.top-right {
+  gap: 10px;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.icon-btn:hover {
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.icon-btn .dl {
+  width: 19px;
+  height: 19px;
+}
+
+.icon-btn:hover .dl-arrow,
+.icon-btn:focus-visible .dl-arrow,
+.icon-btn.is-downloading .dl-arrow {
+  animation: dl-drop 0.9s ease-in-out infinite;
+}
+
+.icon-btn:hover .dl-tray,
+.icon-btn:focus-visible .dl-tray,
+.icon-btn.is-downloading .dl-tray {
+  animation: dl-tray 0.9s ease-in-out infinite;
+}
+
+.icon-btn.is-downloading {
+  pointer-events: none;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .top-right {
+    gap: 6px;
+  }
+
+  .top-left,
+  .top .brand {
+    flex: none;
+  }
+
+  .top .brand-logo {
+    height: 28px;
+    width: auto;
+    max-width: none;
+  }
+
+  .pill a {
+    padding: 0 10px;
+  }
+
+  .icon-btn,
+  .top .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* very small phones: the hero's Download CV button is right below, so the header keeps only the theme button */
+@media (max-width: 370px) {
+  .top .icon-btn {
+    display: none;
+  }
+
+  .top {
+    gap: 6px;
+  }
+
+  .pill a {
+    padding: 0 9px;
+  }
+}
+
+@media (max-width: 335px) {
+  .top .brand-logo {
+    height: 24px;
+  }
+
+  .pill a {
+    padding: 0 7px;
+    font-size: 0.8125rem;
+  }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .feature,

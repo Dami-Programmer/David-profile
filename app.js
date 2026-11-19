@@ -270,18 +270,9 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
 
 
 // ---------------------------------------------------------------
-// Header: local time in WAT, and the pill highlight that slides to
-// the section you are reading.
+// Header: the pill highlight slides to the section you are reading.
 // ---------------------------------------------------------------
 (function () {
-  const clock = document.getElementById("localTime");
-  if (clock) {
-    const fmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Africa/Lagos" });
-    const tick = () => (clock.textContent = fmt.format(new Date()));
-    tick();
-    setInterval(tick, 15000);
-  }
-
   const nav = document.getElementById("pillNav");
   if (!nav) return;
   const indicator = nav.querySelector(".pill-indicator");
@@ -347,3 +338,12 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
   update();
 })();
+
+
+// Header Download CV icon: arrow keeps dropping for a moment after a click
+document.querySelectorAll("a.icon-btn[download]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.classList.add("is-downloading");
+    setTimeout(() => btn.classList.remove("is-downloading"), 1800);
+  });
+});
