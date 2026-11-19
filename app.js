@@ -292,7 +292,7 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
   function update() {
     ticking = false;
     const line = innerHeight * 0.35;
-    let current = 0;
+    let current = -1;
     sections.forEach((sec, i) => {
       if (sec && sec.getBoundingClientRect().top <= line) current = i;
     });
@@ -301,6 +301,17 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
     // a link hidden on small screens hands its highlight to the nearest visible one before it
     let idx = current;
     while (idx > 0 && !visible(links[idx])) idx--;
+    if (idx >= 0 && !visible(links[idx])) idx = -1;
+    if (idx < 0) {
+      links.forEach((a) => {
+        a.classList.remove("is-active");
+        a.removeAttribute("aria-current");
+      });
+      activeLink = null;
+      indicator.classList.add("is-hidden");
+      return;
+    }
+    indicator.classList.remove("is-hidden");
     links.forEach((a, i) => {
       const on = i === idx;
       a.classList.toggle("is-active", on);
@@ -312,7 +323,7 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
   }
 
   // while a label opens or closes, the links move; follow them every frame
-  let activeLink = links[0];
+  let activeLink = null;
   let followUntil = 0;
   function follow() {
     const running = followUntil > performance.now();
@@ -320,7 +331,7 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
     if (running) return;
     indicator.style.transition = "none";
     requestAnimationFrame(function step() {
-      place(activeLink);
+      if (activeLink) place(activeLink);
       if (performance.now() < followUntil) requestAnimationFrame(step);
       else indicator.style.transition = "";
     });

@@ -1622,6 +1622,66 @@ html {
   }
 }
 
+/* ---------- logo that flips against whatever is behind it ----------
+   The logo is drawn white and blended with "difference": over white or light
+   areas it shows black, over dark areas it shows white. It lives in its own
+   fixed layer because blending inside the header would only see the header. */
+:root {
+  --logo-h: 40px;
+  --logo-row: 50px;   /* height of the header row (the pill) */
+  --logo-top: 18px;
+  --logo-left: max(28px, env(safe-area-inset-left, 0px));
+}
+
+.brand-fixed {
+  position: fixed;
+  z-index: 60;
+  top: var(--logo-top);
+  left: var(--logo-left);
+  height: var(--logo-row);
+  display: flex;
+  align-items: center;
+  margin: 0;
+  mix-blend-mode: difference;
+}
+
+.brand-fixed .brand-logo {
+  height: var(--logo-h);
+  width: auto;
+  max-width: none;
+  filter: invert(1);   /* black artwork becomes white before blending */
+}
+
+.brand-space {
+  display: block;
+  width: calc(var(--logo-h) * 1.867);
+  height: var(--logo-h);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --logo-h: 28px;
+    --logo-row: 48px;
+    --logo-top: 12px;
+    --logo-left: max(16px, env(safe-area-inset-left, 0px));
+  }
+}
+
+@media (max-width: 335px) {
+  :root {
+    --logo-h: 24px;
+  }
+}
+
+/* nothing is highlighted while you're at the top of the page */
+.pill-indicator {
+  opacity: 1;
+}
+
+.pill-indicator.is-hidden {
+  opacity: 0;
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .feature,
