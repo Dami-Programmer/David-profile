@@ -1312,6 +1312,216 @@ h4 {
   transform: rotate(180deg) scale(0.9);
 }
 
+/* ---------- floating header: logo + location, pill nav, local time ---------- */
+.top {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 18px max(28px, env(safe-area-inset-right, 0px)) 0 max(28px, env(safe-area-inset-left, 0px));
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  pointer-events: none;
+}
+
+.top > * {
+  pointer-events: auto;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.top-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.top .brand {
+  margin-right: 0;
+}
+
+.top .brand-logo {
+  height: 40px;
+}
+
+.top-meta {
+  font: 400 0.8125rem/1 var(--mono);
+  letter-spacing: 0.02em;
+  color: var(--mute);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.pill {
+  position: relative;
+  display: flex;
+  gap: 2px;
+  margin-top: 0;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 68%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 12px 32px -20px var(--shadow);
+}
+
+.pill a {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font: 500 0.9375rem/1 var(--font);
+  color: var(--mute);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.pill a:hover {
+  color: var(--ink);
+}
+
+.pill a.is-active {
+  color: var(--on-ink);
+}
+
+.pill-indicator {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  left: 0;
+  width: 0;
+  height: calc(100% - 8px);
+  border-radius: 999px;
+  background: var(--ink);
+  transition: transform 0.5s cubic-bezier(0.3, 1.25, 0.4, 1), width 0.5s cubic-bezier(0.3, 1.25, 0.4, 1);
+}
+
+/* room for the floating header */
+html {
+  scroll-padding-top: 100px;
+}
+
+.hero {
+  padding-top: clamp(150px, 17vw, 210px);
+}
+
+@media (min-width: 900px) and (min-height: 820px) {
+  .deck .feature {
+    top: calc(100px + var(--i) * 14px);
+    height: min(calc(100vh - 160px), 730px);
+    padding: clamp(24px, 2.8vw, 38px);
+  }
+
+  .deck .feature .feature-shot img {
+    max-height: calc(min(calc(100vh - 160px), 730px) - 80px);
+  }
+}
+
+@media (max-width: 1060px) {
+  .top .top-meta {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .pill .wide-only {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .top {
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    padding-top: 12px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .pill {
+    justify-self: center;
+    margin-top: 0;
+  }
+
+  .pill a {
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 0.875rem;
+  }
+
+  .top .brand-logo {
+    height: 32px;
+  }
+
+  .hero {
+    padding-top: 110px;
+  }
+}
+
+@media (max-width: 360px) {
+  .pill a {
+    padding: 0 9px;
+  }
+}
+
+/* ---------- pill nav: icons on desktop, the name slides out on hover ---------- */
+.pill .ni {
+  display: none;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* desktop with a mouse: icons only */
+@media (min-width: 641px) and (hover: hover) {
+  .pill a {
+    justify-content: center;
+    min-width: 44px;
+    padding: 0 13px;
+  }
+
+  .pill .ni {
+    display: block;
+  }
+
+  .pill .nl {
+    display: inline-block;
+    max-width: 0;
+    margin-left: 0;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    transition: max-width 0.4s cubic-bezier(0.3, 1, 0.4, 1), margin-left 0.4s cubic-bezier(0.3, 1, 0.4, 1), opacity 0.25s ease;
+  }
+
+  .pill a:hover .nl,
+  .pill a:focus-visible .nl {
+    max-width: 120px;
+    margin-left: 8px;
+    opacity: 1;
+  }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .feature,

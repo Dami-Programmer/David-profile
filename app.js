@@ -267,3 +267,83 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
   if (stacking.addEventListener) stacking.addEventListener("change", update);
   update();
 })();
+
+
+// ---------------------------------------------------------------
+// Header: local time in WAT, and the pill highlight that slides to
+// the section you are reading.
+// ---------------------------------------------------------------
+(function () {
+  const clock = document.getElementById("localTime");
+  if (clock) {
+    const fmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Africa/Lagos" });
+    const tick = () => (clock.textContent = fmt.format(new Date()));
+    tick();
+    setInterval(tick, 15000);
+  }
+
+  const nav = document.getElementById("pillNav");
+  if (!nav) return;
+  const indicator = nav.querySelector(".pill-indicator");
+  const links = [...nav.querySelectorAll("a")];
+  const sections = links.map((a) => document.querySelector(a.getAttribute("href")));
+  let ticking = false;
+
+  function visible(a) {
+    return a.offsetParent !== null;
+  }
+
+  function place(link) {
+    indicator.style.width = link.offsetWidth + "px";
+    indicator.style.transform = "translateX(" + link.offsetLeft + "px)";
+  }
+
+  function update() {
+    ticking = false;
+    const line = innerHeight * 0.35;
+    let current = 0;
+    sections.forEach((sec, i) => {
+      if (sec && sec.getBoundingClientRect().top <= line) current = i;
+    });
+    // at the very bottom, the last section is the one being read
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) current = sections.length - 1;
+    // a link hidden on small screens hands its highlight to the nearest visible one before it
+    let idx = current;
+    while (idx > 0 && !visible(links[idx])) idx--;
+    links.forEach((a, i) => {
+      const on = i === idx;
+      a.classList.toggle("is-active", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+    activeLink = links[idx];
+    place(activeLink);
+  }
+
+  // while a label opens or closes, the links move; follow them every frame
+  let activeLink = links[0];
+  let followUntil = 0;
+  function follow() {
+    const running = followUntil > performance.now();
+    followUntil = performance.now() + 480;
+    if (running) return;
+    indicator.style.transition = "none";
+    requestAnimationFrame(function step() {
+      place(activeLink);
+      if (performance.now() < followUntil) requestAnimationFrame(step);
+      else indicator.style.transition = "";
+    });
+  }
+  ["pointerover", "pointerout", "focusin", "focusout"].forEach((ev) => nav.addEventListener(ev, follow));
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+  update();
+})();
