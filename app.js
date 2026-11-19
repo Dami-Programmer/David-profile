@@ -187,11 +187,32 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
 
   btn.addEventListener("click", () => {
     const next = current() === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try {
-      localStorage.setItem("theme", next);
-    } catch (e) {}
-    paint();
+    const apply = () => {
+      root.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch (e) {}
+      paint();
+    };
+    btn.classList.toggle("spin");
+
+    // no animation: older browsers, or visitors who asked for less motion
+    if (!document.startViewTransition || reduceMotion) {
+      apply();
+      return;
+    }
+
+    const r = btn.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const transition = document.startViewTransition(apply);
+    transition.ready.then(() => {
+      root.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 700, easing: "cubic-bezier(0.65, 0, 0.35, 1)", pseudoElement: "::view-transition-new(root)" }
+      );
+    });
   });
 
   if (media.addEventListener) {
@@ -204,4 +225,45 @@ document.querySelectorAll("a.btn[download]").forEach((btn) => {
     });
   }
   paint();
+})();
+
+
+// ---------------------------------------------------------------
+// Featured projects stack like cards (sticky in CSS). Here a card
+// shrinks a little and dims as the next card slides over it.
+// ---------------------------------------------------------------
+(function () {
+  const cards = [...document.querySelectorAll(".deck .feature")];
+  if (cards.length < 2) return;
+  const stacking = window.matchMedia("(min-width: 900px) and (min-height: 820px)");
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    cards.forEach((card, i) => {
+      const next = cards[i + 1];
+      if (!stacking.matches || !next || reduceMotion) {
+        card.style.transform = "";
+        card.style.setProperty("--cover", 0);
+        return;
+      }
+      const a = card.getBoundingClientRect();
+      const b = next.getBoundingClientRect();
+      // 0 = next card is a full card-height away, 1 = it fully covers this one
+      const p = Math.min(1, Math.max(0, 1 - (b.top - a.top) / a.height));
+      card.style.transform = `scale(${1 - p * 0.05})`;
+      card.style.setProperty("--cover", p.toFixed(3));
+    });
+  }
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  if (stacking.addEventListener) stacking.addEventListener("change", update);
+  update();
 })();

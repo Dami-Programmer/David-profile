@@ -1211,6 +1211,107 @@ h4 {
   font-size: 1rem;
 }
 
+/* ---------- featured projects: cards that stack as you scroll ---------- */
+.deck {
+  display: block;
+}
+
+.feature {
+  position: relative;
+}
+
+/* the dimming layer a card gets when the next one covers it (set from app.js) */
+.feature::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  opacity: calc(var(--cover, 0) * 0.32);
+  pointer-events: none;
+}
+
+@media (min-width: 900px) and (min-height: 820px) {
+  .deck .feature {
+    position: sticky;
+    top: calc(96px + var(--i) * 14px);
+    height: min(calc(100vh - 130px), 740px);
+    margin-bottom: 72px;
+    padding: clamp(28px, 3.2vw, 44px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    gap: clamp(28px, 4vw, 52px);
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    box-shadow: 0 -18px 50px -30px var(--shadow), 0 30px 60px -40px var(--shadow);
+    overflow: hidden;
+    transform-origin: 50% 0;
+    will-change: transform;
+  }
+
+  .deck .feature:last-child {
+    margin-bottom: 24px;
+  }
+
+  .deck .feature .feature-body {
+    order: 1;
+    min-width: 0;
+  }
+
+  .deck .feature .feature-shot,
+  .deck .feature.flip .feature-shot {
+    order: 2;
+    align-self: center;
+    max-height: 100%;
+    box-shadow: 0 24px 48px -32px var(--shadow);
+  }
+
+  .deck .feature .feature-shot img {
+    max-height: calc(min(calc(100vh - 130px), 740px) - 90px);
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .deck .feature-body h3 {
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  }
+
+  .deck .built {
+    margin: 14px 0 16px;
+    gap: 8px;
+  }
+
+  .deck .built li {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .deck .what {
+    font-size: 1.125rem;
+    margin-top: 12px;
+  }
+
+  .deck .links {
+    margin-top: 20px;
+  }
+}
+
+/* theme change: the new theme grows out of the toggle as a circle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.theme-toggle svg {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle.spin svg {
+  transform: rotate(180deg) scale(0.9);
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .feature,
